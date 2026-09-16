@@ -1,13 +1,29 @@
-
+import {alterPage} from "./functions/alterPage.js";
+import { error } from "./functions/error.js";
+import { sair } from "./functions/sair.js";
 // Aqui criamos uma variavel global. Global significa que o elemento pode ser acessado por qualquer método. Para tornar global, utilizamos a palavra static.
 
 var saldo = 100.5; // Float (Número com ponto flutuante)
-import {alterPage} from "./functions/alterPage.js";
 
-/*  Função principal. */
-function ver_saldo() {
-    alterPage(`<p class="message">Seu saldo atual é: R$${saldo}</p>`, true)
-}
+const nameBtn = document.getElementById("nameBtn")
+
+nameBtn.addEventListener("click", ()=>{
+    const home = document.querySelector(".inicio") 
+    const form = document.querySelector(".form") 
+    const yourName = document.querySelector("#yourName")
+
+    if (yourName.value.trim() !== ""){
+        alert("Seja Bem-Vindo " + yourName.value.trim())
+
+        name = yourName.value.trim()
+
+        form.style. display = "none"
+        home.style.display = "block"
+        error("")
+    }else{
+        error("Valor Inválido")
+    }
+})
 
 /*  Função principal. */
 function inicio(){
@@ -17,13 +33,34 @@ function inicio(){
     const btn4 = document.getElementById("btn4")
 
     btn1.addEventListener("click", ver_saldo)
+    btn2.addEventListener("click", fazer_saque)
     btn3.addEventListener("click", fazer_deposito)
+    btn4.addEventListener("click", sair)
 }
 
 inicio()
 
+/*  Função principal. */
+function ver_saldo() {
+    error("")
+    
+    alterPage(`<p class="message">Seu saldo atual é: R$${saldo}</p>`, true)
+}
+
 /*  Função para receber informado pelo usuário, processar e levar a uma mensagem de sucesso ou a repetição da função */
 function fazer_deposito() {
+    function sendDeposito(depos){
+        const deposito = Number(depos) 
+
+		if (isNaN(deposito) || deposito == '') { // A Função isNaN checa se o valor informado é um Não-Número e retorna verdadeiro ou falso.
+            error("Adicione um Valor válido")
+		} else {
+            saldo += deposito
+            ver_saldo()
+            error("")
+		}
+    }
+
     const container = document.createElement("div")
 
     const input = document.createElement("input")
@@ -31,9 +68,13 @@ function fazer_deposito() {
     
     container.className = "lineDiv"
 
-    input.labels[0].textContent = "Coloque o seu nome"
+    input.placeholder = "Qual o valor de seu depósito?"
 
     btn.innerText = "Enviar"
+
+    btn.addEventListener("click", ()=>{
+        sendDeposito(input.value)
+    })
 
     container.appendChild(input)
     container.appendChild(btn)
@@ -42,81 +83,37 @@ function fazer_deposito() {
 }
 /*  Função para receber informado pelo usuário, processar e levar a uma mensagem de sucesso ou a repetição da função */
 function fazer_saque() {
-	var saque = parseFloat(prompt('Qual o valor para saque?'));
-	if (isNaN(saque) || saque === '') {
-		alert('Por favor, informe um número:');
-		fazer_saque();
-	} else {
-		saldo -= saque;
-		ver_saldo();
-	}
-}
-/* Verificar se há um erro */
-function erro() {
-	alert('Por favor, informe um número entre 1 e 4');
-	inicio();
-}
-function sair() {
-	var confirma = confirm('Você deseja sair?');
-	if (confirma) {
-		window.close();
-	} else {
-		inicio();
-	}
-}
+    function sendDeposito(depos){
+        const deposito = Number(depos)
+		
+        if (isNaN(deposito) || deposito == '') {
+            error("Adicione um Valor válido")
+		} else {
+            saldo -= deposito
+            ver_saldo()
+            error("")
+		}
+    }
 
+    const container = document.createElement("div")
 
-export default function themes() {
-    const thems = [...document.getElementsByClassName("thems")];
+    const input = document.createElement("input")
+    const btn = document.createElement("button")
+    
+    container.className = "lineDiv"
 
-    const ths = [
-        {
-            c1: "rgb(54, 51, 62)",
-            c2: "rgb(0, 0, 0)",
-            c3: "rgb(250, 202, 27)",
-            c4: "rgb(217, 120, 34)",
-            c5: "hsla(0, 0%, 0%, 1.00)"
-        },
-        {
-            c4: "rgb(243, 128, 28)",
-            c2: "rgb(0, 0, 0)",
-            c5: "rgb(82, 22, 233)",
-            c1: "rgb(250, 202, 27)",
-            c5: "hsl(0, 0%, 1%)"
-        },
-        {
-            c1: "rgb(253, 252, 255)",
-            c2: "rgb(0, 0, 0)",
-            c3: "rgb(250, 202, 27)",
-            c4: "rgb(217, 120, 34)",
-            c5: "hsl(0, 0%, 1%)"
-        },
-        {
-            c1: "rgb(82, 22, 233)",
-            c2: "rgb(0, 0, 0)",
-            c3: "rgb(250, 202, 27)",
-            c4: "rgb(217, 120, 34)",
-            c5: "hsl(0, 0%, 1%)",
-        }
-    ];
+    input.placeholder = "Qual o valor de seu Saque?"
 
-    thems.forEach((e, i) => {
-        e.addEventListener("click", () => {
+    btn.innerText = "Enviar"
 
-            for (const c in ths[i]) {
-                document.documentElement.style.setProperty(
-                    `--${c}`,
-                    ths[i][c]
-                );
-            }
+    btn.addEventListener("click", ()=>{
+        sendDeposito(input.value)
+    })
 
-        thems.forEach(theme => {
-            theme.classList.remove("selected");
-        });
+    container.appendChild(input)
+    container.appendChild(btn)
 
-        e.classList.add("selected");
-        });
-    });
+    alterPage(container, false)
 }
 
-themes()
+

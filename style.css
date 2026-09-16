@@ -2,8 +2,10 @@
     --c1: rgb(82, 22, 233);
     --c2: rgb(0, 0, 0);
     --c3: rgb(250, 202, 27);
-    --c4: rgb(217, 120, 34);
+    --c4: rgb(217, 120, 34);    
     --c5: hsl(0, 0%, 1%);
+    --c6: rgb(217, 55, 34);
+    interpolate-size: allow-keywords;
 }
 
 *{
@@ -25,8 +27,8 @@ body{
 }
 
 h1{
-    font-size: clamp(20px, 3dvw, 35px);
-    color: var(--c5);
+    font-size: clamp(23px, 3dvw, 35px);
+    color: var(--c2);
     font-weight: 900;
     padding-bottom: 20px;
 }
@@ -37,23 +39,28 @@ h2{
     font-weight: 800;
 }
 
-#sites{
+#sites {
     display: grid;
     gap: 10px;
 
-    & .cont{
+    & .cont {
         margin-top: 10px;
         background-color: var(--c3);
         border: 5px solid var(--c2);
         padding: 20px 15px;
         width: clamp(450px, 100dvw, 600px);
         
+        transition: height .5s;
+
+        overflow: hidden; 
+
         border-radius: 10px;
 
         box-shadow:
             0px 10px 0 var(--c2);
     }
 }
+
 
 @media only screen and (max-width: 800px){
     #sites{
@@ -126,7 +133,6 @@ button {
 
 .message{
     font-size: clamp(18px, 2dvw, 22px);
-    width: 100%;
 }
 
 input{
@@ -141,8 +147,33 @@ input{
     font-size: clamp(18px, 2dvw, 22px);
 
     padding: 8px;
+
+    color: var(--c5);
+
+    width: 80%;
+    
+    &::placeholder{
+        color: var(--c5);
+    }
 }
 
 .lineDiv{
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.error{
+    margin-top: 20px;
+    color: var(--c6);
+    font-size: clamp(18px, 2dvw, 22px);
+    font-weight: 600;
+}
+
+.inicio{
+    display: none;
+}
+
+.form{
+    display: block;
 }
