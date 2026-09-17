@@ -1,6 +1,5 @@
 import {alterPage} from "./functions/alterPage.js";
 import { error } from "./functions/error.js";
-import { sair } from "./functions/sair.js";
 // Aqui criamos uma variavel global. Global significa que o elemento pode ser acessado por qualquer método. Para tornar global, utilizamos a palavra static.
 
 var saldo = 100.5; // Float (Número com ponto flutuante)
@@ -25,17 +24,40 @@ nameBtn.addEventListener("click", ()=>{
     }
 })
 
+function hiddenExtrato(){
+    const extra = document.querySelector(".extrato")
+    extra.style.display = "none"
+}
+
+function extrato(){
+    const extra = document.querySelector(".extrato")
+    hiddenExtrato()
+    let aberto = false
+    alterPage("", true)
+
+    if (aberto == false){
+        extra.style.display = "block"
+        aberto = true
+    }else{
+        hiddenExtrato()
+        aberto = false
+    }
+
+}
+
 /*  Função principal. */
 function inicio(){
     const btn1 = document.getElementById("btn1")
     const btn2 = document.getElementById("btn2")
     const btn3 = document.getElementById("btn3")
     const btn4 = document.getElementById("btn4")
+    const btn5 = document.getElementById("btn5")
 
     btn1.addEventListener("click", ver_saldo)
     btn2.addEventListener("click", fazer_saque)
     btn3.addEventListener("click", fazer_deposito)
-    btn4.addEventListener("click", sair)
+    btn4.addEventListener("click", extrato)
+    btn5.addEventListener("click", fazer_transferencia)
 }
 
 inicio()
@@ -43,12 +65,13 @@ inicio()
 /*  Função principal. */
 function ver_saldo() {
     error("")
-    
+    hiddenExtrato()
     alterPage(`<p class="message">Seu saldo atual é: R$${saldo}</p>`, true)
 }
 
 /*  Função para receber informado pelo usuário, processar e levar a uma mensagem de sucesso ou a repetição da função */
 function fazer_deposito() {
+    hiddenExtrato()
     function sendDeposito(depos){
         const deposito = Number(depos) 
 
@@ -83,13 +106,17 @@ function fazer_deposito() {
 }
 /*  Função para receber informado pelo usuário, processar e levar a uma mensagem de sucesso ou a repetição da função */
 function fazer_saque() {
-    function sendDeposito(depos){
-        const deposito = Number(depos)
+    hiddenExtrato()
+    function sendSaque(saque){
+        const saqueValue = Number(saque)
 		
-        if (isNaN(deposito) || deposito == '') {
+        if (isNaN(saqueValue) || saqueValue == '') {
             error("Adicione um Valor válido")
-		} else {
-            saldo -= deposito
+		}
+        else if (saqueValue > saldo) {
+            error("Saldo insuficiente")
+        }else {
+            saldo -= saqueValue
             ver_saldo()
             error("")
 		}
@@ -107,7 +134,7 @@ function fazer_saque() {
     btn.innerText = "Enviar"
 
     btn.addEventListener("click", ()=>{
-        sendDeposito(input.value)
+        sendSaque(input.value)
     })
 
     container.appendChild(input)
@@ -116,4 +143,80 @@ function fazer_saque() {
     alterPage(container, false)
 }
 
+
+function fazer_transferencia() {
+    hiddenExtrato()
+    function sendTransferencia(transferencia){
+        const transferenciaValue = Number(transferencia)
+		
+        if (isNaN(transferenciaValue) || transferenciaValue == '') {
+            error("Adicione um Valor válido")
+		}
+        else if (transferenciaValue > saldo) {
+            error("Saldo insuficiente")
+        }else {
+            saldo -= transferenciaValue
+            ver_saldo()
+            error("")
+		}
+    }
+
+    function verifyNumber(transferencia){
+        const transferenciaValue = Number(transferencia)
+		
+        if (isNaN(transferenciaValue) || transferenciaValue == '') {
+            error("Adicione um Valor válido")
+		}else{
+            sendValue()
+        }
+    }
+
+    function sendValue(){
+        const container = document.createElement("div")
+    
+        const input = document.createElement("input")
+        const btn = document.createElement("button")
+        
+        container.className = "lineDiv"
+    
+        input.placeholder = "Qual o valor de seu Saque?"
+    
+        btn.innerText = "Enviar"
+    
+        btn.addEventListener("click", ()=>{
+            sendTransferencia(input.value)
+        })
+    
+        container.appendChild(input)
+        container.appendChild(btn)
+    
+        alterPage(container, false)
+    }
+
+    function sendNumber(){
+        const container = document.createElement("div")
+
+        const input = document.createElement("input")
+        const btn = document.createElement("button")
+        
+        container.className = "lineDiv"
+
+        input.placeholder = "Adicione o número da conta"
+
+        btn.innerText = "Enviar"
+
+        btn.addEventListener("click", ()=>{
+            verifyNumber(input.value)
+
+        })
+
+        container.appendChild(input)
+        container.appendChild(btn)
+
+        alterPage(container, false)
+
+    }
+
+    sendNumber()
+}
 
