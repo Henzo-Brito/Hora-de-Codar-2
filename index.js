@@ -6,12 +6,12 @@ import { error } from "./functions/error.js";
 var saldo = 100.5; // Float (Número com ponto flutuante)
 
 const nameBtn = document.getElementById("nameBtn");
-
+let name = "";
 const sair = document.getElementById("sair");
 
 sair.addEventListener("click", () => {
     const confirma = window.confirm("Você deseja sair?");
-    alert(`${Nome}, foi um prazer ter você por aqui!`);
+    alert(`${name}, foi um prazer ter você por aqui!`);
     if (confirma) {
         window.close();
     }
@@ -21,10 +21,11 @@ nameBtn.addEventListener("click", () => {
     const home = document.querySelector(".inicio");
     const form = document.querySelector(".form");
     const yourName = document.querySelector("#yourName");
-
+    
     if (yourName.value.trim() !== "") {
         alert(`Seja Bem-Vindo ${yourName.value.trim()}`);
-
+        name = yourName.value.trim()
+        
         form.style.display = "none";
         home.style.display = "block";
         sair.style.display = "flex";
