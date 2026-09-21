@@ -1,23 +1,23 @@
-:root{
+:root {
     --c1: rgb(82, 22, 233);
     --c2: rgb(0, 0, 0);
     --c3: rgb(250, 202, 27);
-    --c4: rgb(217, 120, 34);    
+    --c4: rgb(217, 120, 34);
     --c5: hsl(0, 0%, 1%);
     --c6: rgb(217, 55, 34);
     interpolate-size: allow-keywords;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 
     color: var(--c2);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
+body {
     background-color: var(--c1);
     display: flex;
     align-items: center;
@@ -26,14 +26,14 @@ body{
     flex-direction: column;
 }
 
-h1{
+h1 {
     font-size: clamp(23px, 3dvw, 35px);
     color: var(--c2);
     font-weight: 900;
     padding-bottom: 10px;
 }
 
-h2{
+h2 {
     margin-bottom: 10px;
     font-size: clamp(18px, 3dvw, 25px);
     font-weight: 800;
@@ -49,55 +49,50 @@ h2{
         border: 5px solid var(--c2);
         padding: 20px 15px;
         width: clamp(450px, 100dvw, 600px);
-        
-        transition: height .5s;
 
-        overflow: hidden; 
+        transition: height 0.5s;
+
+        overflow: hidden;
 
         border-radius: 10px;
 
-        box-shadow:
-            0px 10px 0 var(--c2);
+        box-shadow: 0px 10px 0 var(--c2);
     }
 }
 
-
-@media only screen and (max-width: 800px){
-    #sites{
-        width: clamp(250px,90%, 500px);
-        & .cont{
+@media only screen and (max-width: 800px) {
+    #sites {
+        width: clamp(250px, 90%, 500px);
+        & .cont {
             width: 100%;
         }
     }
 }
 
-.container{
-    display: flex;
+.container {
     gap: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
-@media only screen and (max-width: 800px){
-    .container{
+@media only screen and (max-width: 800px) {
+    .container {
         column-gap: 4px;
     }
 }
 
 button {
     font-weight: 800;
-    font-size: clamp(14px, 2dvw, 17px);
     padding: 8px;
     background-color: var(--c4);
     cursor: pointer;
     border: 5px solid var(--c2);
 
     font-size: clamp(12px, 2dvw, 18px);
-    box-shadow:
-        -0px 5px 0 var(--c2);
+    box-shadow: -0px 5px 0 var(--c2);
 
-    border-radius: 10px;        
-    
-    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 10px;
+
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     white-space: nowrap;
 
@@ -110,36 +105,35 @@ button {
     }
 }
 
-.selected{
+.selected {
     box-shadow:
-    0 0 0 var(--c2),
-    0 0 0 var(--c2);
+        0 0 0 var(--c2),
+        0 0 0 var(--c2);
 
     transform: translateY(5px);
 }
 
-.themes{
+.themes {
     margin-top: 30px;
-    & button{
+    & button {
         width: 30px;
         height: 30px;
     }
 }
 
-#functions{
+#functions {
     font-weight: 700;
     margin-top: 20px;
 }
 
-.message{
+.message {
     font-size: clamp(18px, 2dvw, 22px);
 }
 
-input{
+input {
     border-radius: 50px;
     border: 5px solid var(--c2);
-    box-shadow:
-        -0px 7px 0 var(--c2);
+    box-shadow: -0px 7px 0 var(--c2);
 
     font-weight: 600;
 
@@ -151,46 +145,46 @@ input{
     color: var(--c5);
 
     width: 80%;
-    
-    &::placeholder{
+
+    &::placeholder {
         color: var(--c5);
     }
 }
 
-.lineDiv{
+.lineDiv {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.error{
+.error {
     margin-top: 20px;
     color: var(--c6);
     font-size: clamp(18px, 2dvw, 22px);
     font-weight: 600;
 }
 
-.inicio{
+.inicio {
     display: none;
 }
 
-.form{
+.form {
     display: block;
 }
 
-#sair{
+#sair {
     position: fixed;
     right: clamp(20px, 5vw, 40px);
     bottom: clamp(20px, 5vw, 40px);
     cursor: pointer;
     border-radius: 20px;
     background-color: var(--c4);
-    border: 5px solid var(--c5);
+    border: 5px solid hsl(0, 0%, 1%);
     padding: 10px;
-    box-shadow:
-        0 5px 0 var(--c2);
+    box-shadow: 0 5px 0 var(--c2);
+    display: none;
 
-    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     font-weight: 700;
     font-size: clamp(14px, 2dvw, 17px);
 
@@ -209,7 +203,7 @@ input{
     & h1 {
         margin-bottom: 20px;
     }
-    
+
     & table {
         width: 100%;
         border: 4px solid var(--c2);
@@ -218,17 +212,17 @@ input{
         box-shadow: 0 10px 0 var(--c2);
         overflow: hidden;
     }
-    
+
     & th,
     & td {
         padding: 12px 16px;
         text-align: left;
     }
-    
+
     & th {
         font-weight: 800;
     }
-    
+
     & tr {
         font-weight: 600;
     }

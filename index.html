@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Henzo Esteve Aqui 2</title>
 	<link rel="stylesheet" href="./style.css">
 	<script type="module" src="./index.js" defer></script>
+	<script type="module" src="./functions/sair.js" defer></script>
 	<script type="module" src="./functions/themes.js" defer></script>
 </head>
 <body>
@@ -13,11 +14,11 @@
 		<div class="cont inicio">
 			<h1 id="title">Seja Bem-Vindo</h1>
             <div id="container" class="container">
-				<button id="btn1">Ver Saldo</button>
-				<button id="btn4">Extrato</button>
-				<button id="btn2">Sacar</button>
-				<button id="btn3">Depositar</button>
-				<button id="btn5">Transferir</button>
+				<button type="button" id="btn1">Ver Saldo</button>
+				<button type="button" id="btn4">Extrato</button>
+				<button type="button" id="btn2">Sacar</button>
+				<button type="button" id="btn3">Depositar</button>
+				<button type="button" id="btn5">Transferir</button>
 			</div>
 			<div id="functions"></div>
 			<p class="error"></p>
@@ -27,7 +28,7 @@
 			<div id="functions">
 				<div class="lineDiv">
 					<input id="yourName" type="text" placeholder="Insira o seu Nome">
-					<button id="nameBtn">Enviar</button>
+					<button type="button" id="nameBtn">Enviar</button>
 				</div>
 			</div>
 			<p class="error"></p>
@@ -95,10 +96,10 @@
 
 
     <div class="themes">
-        <button class="thems " id="thm1" style="background-color: #616160;"></button>
-        <button class="thems " id="thm2" style="background-color: #e8541f;"></button>
-        <button class="thems " id="thm3" style="background-color: #fcfcfc;"></button>
-        <button class="thems selected" id="thm4" style="background-color: rgb(82, 22, 233)"></button>
+        <button type="button" class="thems" id="thm1" style="background-color: #616160;"></button>
+        <button type="button" class="thems" id="thm2" style="background-color: #e8541f;"></button>
+        <button type="button" class="thems" id="thm3" style="background-color: #fcfcfc;"></button>
+        <button type="button" class="thems selected" id="thm4" style="background-color: rgb(82, 22, 233)"></button>
     </div>
 	
     <div id="sair">Sair</div>

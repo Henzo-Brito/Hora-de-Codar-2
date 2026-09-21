@@ -1,6 +1,6 @@
 let pageTimeoutToken = null;
 
-export function alterPage(cont, msg){
+export function alterPage(cont, msg) {
     const div = document.getElementById("functions");
 
     if (pageTimeoutToken) {
@@ -10,14 +10,13 @@ export function alterPage(cont, msg){
 
     div.innerHTML = "";
 
-    if(msg){
+    if (msg) {
         div.innerHTML = cont;
-        
-        pageTimeoutToken = setTimeout(()=>{
+
+        pageTimeoutToken = setTimeout(() => {
             div.innerHTML = ``;
         }, 5000);
     } else {
         div.appendChild(cont);
     }
 }
-
