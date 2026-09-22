@@ -20,6 +20,7 @@ sair.addEventListener("click", () => {
     
         form.style.display = "block";
         home.style.display = "none";
+        sair.style.display = "none";
     }
 });
 
