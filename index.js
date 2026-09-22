@@ -11,9 +11,15 @@ const sair = document.getElementById("sair");
 
 sair.addEventListener("click", () => {
     const confirma = window.confirm("Você deseja sair?");
-    alert(`${name}, foi um prazer ter você por aqui!`);
+    
     if (confirma) {
-        window.close();
+        const home = document.querySelector(".inicio");
+        const form = document.querySelector(".form");
+        
+        alert(`${name}, foi um prazer ter você por aqui!`);
+    
+        form.style.display = "block";
+        home.style.display = "none";
     }
 });
 
